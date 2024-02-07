@@ -1,9 +1,8 @@
-// components/MainContent.js
 'use client';
 import { useEffect, useRef } from 'react';
 import * as fabric from 'fabric';
 
-const MainContent = () => {
+const FabricCanvas = () => {
   const canvasRef = useRef(null);
   let fabricCanvas;
 
@@ -154,4 +153,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default FabricCanvas;
