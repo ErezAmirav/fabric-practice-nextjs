@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### NextJS & FabricJS Practice
 
-## Getting Started
+#### About
+The `FabricCanvas` component is a Next component designed to display a video, an image uploaded by the user, and editable text on a canvas.
+It utilizes the Fabric.js library for canvas manipulation.
 
-First, run the development server:
+#### Features
+- Upload and display images on a canvas.<br>
+- Animate uploaded images from side to side.<br>
+- Remove uploaded images after a specified duration.<br>
+- Add editable text to the canvas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#### How It Works
+- Image Upload: 
+Users can select an image file using the provided file input. Upon selection, the image is displayed on the canvas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Image Animation: 
+The uploaded image is animated from side to side continuously using the Fabric.js library.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Image Removal: 
+After a specified duration (default: 5 seconds), the uploaded image is automatically removed from the canvas.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Editable Text: 
+Users can add editable text to the canvas by clicking the "Add Editable Text" button. The text can be edited directly on the canvas.
