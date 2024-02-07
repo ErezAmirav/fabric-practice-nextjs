@@ -11,14 +11,10 @@ It utilizes the Fabric.js library for canvas manipulation.
 - Add editable text to the canvas.
 
 #### How It Works
-- Image Upload: 
-Users can select an image file using the provided file input. Upon selection, the image is displayed on the canvas.
+- Image Upload:<br>Users can select an image file using the provided file input. Upon selection, the image is displayed on the canvas.
 
-- Image Animation: 
-The uploaded image is animated from side to side continuously using the Fabric.js library.
+- Image Animation:<br>The uploaded image is animated from side to side continuously using the Fabric.js library.
 
-- Image Removal: 
-After a specified duration (default: 5 seconds), the uploaded image is automatically removed from the canvas.
+- Image Removal:<br>After a specified duration (default: 5 seconds), the uploaded image is automatically removed from the canvas.
 
-- Editable Text: 
-Users can add editable text to the canvas by clicking the "Add Editable Text" button. The text can be edited directly on the canvas.
+- Editable Text:<br>Users can add editable text to the canvas by clicking the "Add Editable Text" button. The text can be edited directly on the canvas.
