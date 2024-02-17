@@ -191,7 +191,7 @@ const FabricCanvas = () => {
           />
         </form>
         <button
-          className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 hover:bg-slate-800 text-white text-sm mt-3 mb-3"
+          className="px-1 py-1 w-[full] sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 hover:bg-slate-800 text-white text-sm mt-3 mb-3"
           onClick={addEditableText}
         >
           <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-3 py-1">
@@ -201,12 +201,7 @@ const FabricCanvas = () => {
       </div>
       {/* Video Section */}
       <div className="relative right-[16.5rem] z-0 w-520 h-300">
-        <canvas
-          ref={canvasRef}
-          id="c"
-          width="520"
-          height="300"
-        ></canvas>
+        <canvas ref={canvasRef} id="c" width="520" height="300"></canvas>
       </div>
       {/* Canvas Section */}
       {/* <div className="absolute z-20"> */}

@@ -1,9 +1,9 @@
 'use client';
-
 import React, { useState } from 'react';
 
 const BackgroundVideo = () => {
   const [videoPath, setVideoPath] = useState(null);
+  const [videoDuration, setVideoDuration] = useState(null);
 
   // Function to handle changes in the input field
   const handleVideoChange = (e) => {
@@ -11,12 +11,20 @@ const BackgroundVideo = () => {
     if (file) {
       const path = URL.createObjectURL(file);
       setVideoPath(path);
+      setVideoDuration(null);
     }
   };
-  const removeVid = () => {
-    setVideoPath(null);
+
+  // Function to get uploaded video duration
+  const handleVideoLoadedMetadata = (e) => {
+    setVideoDuration(e.target.duration);
   };
 
+  const removeVid = () => {
+    setVideoPath(null);
+    setVideoDuration(null);
+  };
+  
   return (
     <div className="w-[520px] h-[300px]">
       <h1 className="text-xl font-bold my-2">Upload Video</h1>
@@ -54,11 +62,17 @@ const BackgroundVideo = () => {
             width={520}
             height={300}
             style={{ position: 'relative', left: '18rem', zIndex: '0' }}
+            onLoadedMetadata={handleVideoLoadedMetadata}
           >
             <source src={videoPath} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+      )}
+      {videoDuration && (
+        <p className="text-sm mt-2">
+          Video Duration: {videoDuration.toFixed(2)} seconds
+        </p>
       )}
     </div>
   );
