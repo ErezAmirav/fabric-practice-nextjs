@@ -40,15 +40,25 @@ const BackgroundVideo = () => {
         className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 hover:bg-slate-800 text-white text-sm mt-3 mb-3"
         onClick={removeVid}
       >
-        <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-4 py-1">
+        <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-3 py-1">
           Remove Video
         </span>
       </button>
       {videoPath && (
-        <video autoPlay muted loop controls width={520} height={300}>
-          <source src={videoPath} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="left-[50%] z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            controls
+            width={520}
+            height={300}
+            style={{ position: 'relative', left: '18rem', zIndex: '0' }}
+          >
+            <source src={videoPath} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       )}
     </div>
   );
