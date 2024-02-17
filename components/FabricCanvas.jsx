@@ -171,53 +171,46 @@ const FabricCanvas = () => {
 
   return (
     <div className="main-page">
-      <div className="grid grid-cols-2 gap-8">
-        {/* Video Section */}
-        <div className="z-0 object-fill w-520 h-300">
-          <video id="backVid" autoPlay loop width={520} height={300}>
-            <source
-              src="assets/corgivid.mp4"
-              type="video/mp4"
-              width={520}
-              height={300}
-              className="object-fill"
-            />
-          </video>
-        </div>
-        {/* Canvas Section */}
-        <div className="absolute z-20">
-          <canvas ref={canvasRef} id="c" width="520" height="300"></canvas>
-        </div>
-        {/* Form Section */}
+       
         <div>
-          <div className="text-xl font-bold my-2">Upload Image</div>
+          <h1 className="text-xl font-bold my-2">Upload Image</h1>
           <form className="imgForm">
             <label
               htmlFor="myfile"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Select a file:
+              Select Image:
             </label>
             <input
               className="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 bg-gray-700 border-gray-600 file:p-2 file:bg-gradient-to-br from-purple-500 to-cyan-500 file:border-none file:text-white hover:file:text-slate-300"
               type="file"
               id="myfile"
               name="myfile"
+              accept='image/*'
               onChange={pendulumSwingImage}
               // onChange={ltrLoopImage}
             />
-            <br />
+            
           </form>
           <button
-            className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 hover:bg-slate-800 text-white mt-3"
+            className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 hover:bg-slate-800 text-white text-sm mt-3"
             onClick={addEditableText}
           >
-            <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+            <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-4 py-1">
               Add Editable Text
             </span>
           </button>
         </div>
-      </div>
+         {/* Video Section */}
+         <div className="z-0 object-fill w-520 h-300">
+          
+          </div>
+          {/* Canvas Section */}
+          {/* <div className="absolute z-20"> */}
+            <canvas ref={canvasRef} id="c" width="520" height="300"></canvas>
+          {/* </div> */}
+          {/* Form Section */}
+      
     </div>
   );
 };
