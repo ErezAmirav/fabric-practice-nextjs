@@ -1,10 +1,12 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import * as fabric from 'fabric';
+import { useSelector } from 'react-redux';
 
 const FabricCanvas = () => {
   const canvasRef = useRef(null);
   let fabricCanvas;
+  const videoDuration = useSelector((state) => state.videoDuration);
 
   useEffect(() => {
     fabricCanvas = new fabric.Canvas(canvasRef.current, { selection: false });
@@ -207,6 +209,11 @@ const FabricCanvas = () => {
       {/* <div className="absolute z-20"> */}
       {/* </div> */}
       {/* Form Section */}
+      {videoDuration && (
+        <p className="text-sm mt-2">
+          Video Duration: {videoDuration.toFixed(2)} seconds
+        </p>
+      )}
     </div>
   );
 };

@@ -1,10 +1,14 @@
 'use client';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setVideoDuration } from '@/store/action';
+import { useSelector } from 'react-redux';
 
 const BackgroundVideo = () => {
   const [videoPath, setVideoPath] = useState(null);
-  const [videoDuration, setVideoDuration] = useState(null);
-
+  // const [videoDuration, setVideoDuration] = useState(null);
+  const dispatch = useDispatch();
+  const videoDuration = useSelector((state) => state.videoDuration);
   // Function to handle changes in the input field
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
@@ -17,14 +21,15 @@ const BackgroundVideo = () => {
 
   // Function to get uploaded video duration
   const handleVideoLoadedMetadata = (e) => {
-    setVideoDuration(e.target.duration);
+    const duration = e.target.duration;
+    dispatch(setVideoDuration(duration));
   };
 
   const removeVid = () => {
     setVideoPath(null);
     setVideoDuration(null);
   };
-  
+
   return (
     <div className="w-[520px] h-[300px]">
       <h1 className="text-xl font-bold my-2">Upload Video</h1>
