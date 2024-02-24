@@ -1,17 +1,20 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import * as fabric from 'fabric';
 import { useSelector } from 'react-redux';
 
 const FabricCanvas = () => {
   const canvasRef = useRef(null);
-  let fabricCanvas;
+  // let fabricCanvas;
+  const [fabricCanvas, setFabricCanvas] = useState()
   const videoDuration = useSelector((state) => state.videoDuration);
 
   useEffect(() => {
-    fabricCanvas = new fabric.Canvas(canvasRef.current, { selection: false });
+    console.log("here")
+    const initialCanvas = new fabric.Canvas(canvasRef.current, { selection: false });
+    setFabricCanvas(initialCanvas)
     return () => {
-      fabricCanvas.dispose();
+      initialCanvas.dispose();
     };
   }, []);
 
