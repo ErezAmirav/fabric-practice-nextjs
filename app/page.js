@@ -1,6 +1,7 @@
-'use client'
+'use client';
 import FabricCanvas from '@/components/FabricCanvas';
 import BackgroundVideo from '@/components/BackgroundVideo';
+import GiphyChooser from '@/components/GiphyChooser';
 import { Provider } from 'react-redux';
 import store from '@/store';
 
@@ -16,6 +17,7 @@ export default function Home() {
             <FabricCanvas />
           </div>
         </div>
+        <GiphyChooser />
       </main>
     </Provider>
   );
