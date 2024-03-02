@@ -19,12 +19,9 @@ export default function Home() {
             <FabricCanvas />
           </div>
         </div>
-<<<<<<< HEAD
         <GiphyChooser />
-=======
         {/* <VideoController /> */}
         <VideoPlayer src='assets/corgividLonger.mp4'/>
->>>>>>> 413b178 (Temp)
       </main>
     </Provider>
   );
