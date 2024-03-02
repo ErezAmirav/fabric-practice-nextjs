@@ -4,6 +4,8 @@ import BackgroundVideo from '@/components/BackgroundVideo';
 import GiphyChooser from '@/components/GiphyChooser';
 import { Provider } from 'react-redux';
 import store from '@/store';
+import VideoController from '@/components/VideoController';
+import VideoPlayer from '@/components/VideoPlayer';
 
 export default function Home() {
   return (
@@ -17,7 +19,12 @@ export default function Home() {
             <FabricCanvas />
           </div>
         </div>
+<<<<<<< HEAD
         <GiphyChooser />
+=======
+        {/* <VideoController /> */}
+        <VideoPlayer src='assets/corgividLonger.mp4'/>
+>>>>>>> 413b178 (Temp)
       </main>
     </Provider>
   );

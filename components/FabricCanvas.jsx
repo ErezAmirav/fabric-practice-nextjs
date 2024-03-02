@@ -1,18 +1,20 @@
 'use client';
-import { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as fabric from 'fabric';
 import { useSelector } from 'react-redux';
 
 const FabricCanvas = () => {
   const canvasRef = useRef(null);
-  // let fabricCanvas;
-  const [fabricCanvas, setFabricCanvas] = useState()
+  const [fabricCanvas, setFabricCanvas] = useState();
   const videoDuration = useSelector((state) => state.videoDuration);
+  const startTime = 10;
+  const endTime = 20;
 
   useEffect(() => {
-    console.log("here")
-    const initialCanvas = new fabric.Canvas(canvasRef.current, { selection: false });
-    setFabricCanvas(initialCanvas)
+    const initialCanvas = new fabric.Canvas(canvasRef.current, {
+      selection: false,
+    });
+    setFabricCanvas(initialCanvas);
     return () => {
       initialCanvas.dispose();
     };
@@ -92,70 +94,83 @@ const FabricCanvas = () => {
   };
   // Pendulum animation
   const pendulumSwingImage = (e) => {
-    const input = e.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
+    setTimeout(() => {
+      const input = e.target;
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
 
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          const fabricImage = new fabric.Image(img, {
-            left: 0,
-            top: 0,
-            selectable: true,
-            hasControls: true,
-            hasBorders: true,
-            lockMovementX: false,
-            lockMovementY: false,
-            lockScalingX: false,
-            lockScalingY: false,
-            cornerColor: 'blue',
-          });
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const fabricImage = new fabric.Image(img, {
+              left: 0,
+              top: 0,
+              selectable: true,
+              hasControls: true,
+              hasBorders: true,
+              lockMovementX: false,
+              lockMovementY: false,
+              lockScalingX: false,
+              lockScalingY: false,
+              cornerColor: 'blue',
+            });
 
-          fabricImage.set({
-            scaleX: 150 / fabricImage.width,
-            scaleY: 150 / fabricImage.width,
-          });
+            fabricImage.set({
+              scaleX: 150 / fabricImage.width,
+              scaleY: 150 / fabricImage.width,
+            });
 
-          fabricCanvas.add(fabricImage);
-          fabricCanvas.renderAll();
-
-          let start = performance.now();
-          let duration = 1000; // Duration for one complete swing
-          let amplitude = 120; // Adjust amplitude to control the swing height
-          let initialPosition = { x: 0, y: 0 }; // Starting position (left)
-          let finalPosition = { x: 520 - fabricImage.getScaledWidth(), y: 0 }; // Ending position (right)
-          let startPosition = initialPosition;
-          let endPosition = finalPosition;
-
-          // Function to handle the image animation swinging from side to side
-          function animate(currentTime) {
-            const elapsedTime = currentTime - start;
-            const progress = Math.min(elapsedTime / duration, 1);
-            const newPositionX =
-              startPosition.x + (endPosition.x - startPosition.x) * progress;
-            const newPositionY =
-              startPosition.y + amplitude * Math.sin(progress * Math.PI); // Using sine function for vertical motion
-
-            fabricImage.set('left', newPositionX);
-            fabricImage.set('top', newPositionY);
+            fabricCanvas.add(fabricImage);
             fabricCanvas.renderAll();
 
-            if (progress >= 1) {
-              // Reset animation
-              start = performance.now();
-              const temp = startPosition;
-              startPosition = endPosition;
-              endPosition = temp;
+            let start = performance.now();
+            let duration = 1000; // Duration for one complete swing
+            let amplitude = 120; // Adjust amplitude to control the swing height
+            let initialPosition = { x: 0, y: 0 }; // Starting position (left)
+            let finalPosition = { x: 520 - fabricImage.getScaledWidth(), y: 0 }; // Ending position (right)
+            let startPosition = initialPosition;
+            let endPosition = finalPosition;
+
+            // Function to handle the image animation swinging from side to side
+            function animate(currentTime) {
+              const elapsedTime = currentTime - start;
+              const progress = Math.min(elapsedTime / duration, 1);
+              const newPositionX =
+                startPosition.x + (endPosition.x - startPosition.x) * progress;
+              const newPositionY =
+                startPosition.y + amplitude * Math.sin(progress * Math.PI);
+
+              fabricImage.set('left', newPositionX);
+              fabricImage.set('top', newPositionY);
+              fabricCanvas.renderAll();
+
+              // Removing the image after 5 seconds as requested
+              if (
+                videoDuration != null &&
+                videoDuration >= startTime + endTime
+              ) {
+                setTimeout(() => {
+                  fabricCanvas.remove(fabricImage);
+                }, (endTime - startTime) * 1000);
+              } 
+              // else console.log('Invalid Time');
+
+              if (progress >= 1) {
+                // Reset animation
+                start = performance.now();
+                const temp = startPosition;
+                startPosition = endPosition;
+                endPosition = temp;
+              }
+              requestAnimationFrame(animate);
             }
             requestAnimationFrame(animate);
-          }
-          requestAnimationFrame(animate);
+          };
+          img.src = e.target.result;
         };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }, startTime * 1000);
   };
 
   // Function for Editable Text
@@ -204,14 +219,9 @@ const FabricCanvas = () => {
           </span>
         </button>
       </div>
-      {/* Video Section */}
       <div className="relative right-[16.5rem] z-0 w-520 h-300">
         <canvas ref={canvasRef} id="c" width="520" height="300"></canvas>
       </div>
-      {/* Canvas Section */}
-      {/* <div className="absolute z-20"> */}
-      {/* </div> */}
-      {/* Form Section */}
       {videoDuration && (
         <p className="text-sm mt-2">
           Video Duration: {videoDuration.toFixed(2)} seconds

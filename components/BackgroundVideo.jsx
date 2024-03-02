@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 
 const BackgroundVideo = () => {
   const [videoPath, setVideoPath] = useState(null);
-  // const [videoDuration, setVideoDuration] = useState(null);
   const dispatch = useDispatch();
   const videoDuration = useSelector((state) => state.videoDuration);
+  
   // Function to handle changes in the input field
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
